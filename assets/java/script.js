@@ -1,5 +1,3 @@
-// Assignment Code
-
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
@@ -15,11 +13,12 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
-  let userConfirms = ""; //make this a string instead
-  let userRejects = "";
+  let userConfirms = ""; 
 
+  // User choose password between 8 - 128
   let passwordLength = parseInt(prompt("How long would you like your password? Please choose between 8 - 128 characters")) ;
     
+    // if incorrect values are input
     while (!passwordLength || passwordLength < 8 || passwordLength > 128 || passwordLength == NaN) {
       passwordLength = parseInt(prompt("Please enter valid password length.")) ;
     }
@@ -27,7 +26,7 @@ function generatePassword() {
     alert("Thanks! You chose " + passwordLength + ".")
     alert("Please select AT LEAST one of the following criteria prompts for your password.")
    
-
+  // Uppercase confirm
   let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let confirmUppercase = confirm("Should your password include uppercase letters?");
 
@@ -36,7 +35,7 @@ function generatePassword() {
     userConfirms += uppercase
   } 
   
-
+  // Lowercase confirm
   let lowercase = "abcdefghijklmnopqrstuvwxyz";
   let confirmLowercase = confirm("Should your password include lowercase letters?");
 
@@ -44,12 +43,8 @@ function generatePassword() {
     alert("Thank you! Your password will include lowercase letters.")
     userConfirms += lowercase
   }
-  else if (confirmLowercase === false) {
-    alert("Fuck you")
-    userRejects += lowercase
-  }
   
-
+  // Numbers confirm
   let numbers = "0123456789";
   let confirmNumbers = confirm("Should your password include numbers?");
   
@@ -58,6 +53,7 @@ function generatePassword() {
     userConfirms += numbers
   }
 
+  // Special character confirm
   let characters = "!#$%&*";
   let confirmCharacters = confirm("Should your password include any special characters?");
 
@@ -66,12 +62,14 @@ function generatePassword() {
     userConfirms += characters
   }
 
+  // Password is given
 
   var newPassword = "";
 
+  // If nothing is chosen...
   if (!confirmUppercase && !confirmLowercase && !confirmNumbers && !confirmCharacters) {
     return "Unable to generate password due to lack of valid criteria. Please try again.";
-    //location.reload();
+    
   } else {
     for (i = 0; i<passwordLength; i++) {
       const randNum = Math.floor(Math.random() * userConfirms.length)
